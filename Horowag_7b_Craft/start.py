@@ -46,8 +46,8 @@ with block as demo:
         with gr.Column(scale=15):
             gr.Markdown(
                 """
-                <h1><center>Horowag-7b-V2</center></h1>
-                <center>🍏与Elysia聊天🍎</center>
+                <h1><center>Elysia</center></h1>
+                <center>与Elysia聊天</center>
                 """)
     
     with gr.Row():
