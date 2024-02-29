@@ -3,8 +3,8 @@ from config.horowag_model_rebuilder import Horowag
 from openxlab.model import download
 import gradio as gr
 # 加载基础的语言模型 Horowag_7b
-download(model_repo='lengbaihang1/Elysia',    #此处需要修改
-         output='Elysia-Chat-7b')                #此处需要修改
+download(model_repo='lengbaihang1/Elysia01',    #此处需要修改
+         output='Horowag_7b')                #此处需要修改
 
 
 # 构造模型链的对象
@@ -37,7 +37,7 @@ class Horo_Chatty_Chain():
 
 
 # 构建对话模式
-Horo_Chatty_Chain = Horo_Chatty_Chain(model_path='Elysia-Chat-7b')     #需要更改
+Horo_Chatty_Chain = Horo_Chatty_Chain(model_path='Horowag_7b')     #需要更改
 
 # 构建 gradio 对话
 block = gr.Blocks()
