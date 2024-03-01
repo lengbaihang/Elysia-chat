@@ -34,21 +34,20 @@ tips:书生大模型的在线实验室创建虚拟环境好像没啥用，无法
 
 # InternStudio 平台中，从本地 clone 一个已有 pytorch 2.0.1 的环境（后续均在该环境执行，若为其他环境可作为参考）
 # 进入环境后首先 bash
-# 进入环境后首先 bash
-# 进入环境后首先 bash
-bash
-conda create --name personal_assistant --clone=/root/share/conda_envs/internlm-base
-# 如果在其他平台：
-# conda create --name personal_assistant python=3.10 -y
 
+
+bash
+
+ conda create --name Elysia  python=3.10 -y
 # 激活环境
-conda activate personal_assistant
+conda activate Elysia
 # 进入家目录 （~的意思是 “当前用户的home路径”）
 cd ~
-# 创建版本文件夹并进入，以跟随本教程
-# personal_assistant用于存放本教程所使用的东西
-mkdir /root/personal_assistant && cd /root/personal_assistant
-mkdir /root/personal_assistant/xtuner019 && cd /root/personal_assistant/xtuner019
+
+# 创建一个微调 oasst1 的工作路径，进入
+mkdir ~/ft-oasst1 && cd ~/ft-oasst1
+
+
 
 # 拉取 0.1.9 的版本源码
 git clone -b v0.1.9  https://github.com/InternLM/xtuner
@@ -66,7 +65,7 @@ pip install -e '.[all]'
 数据准备
 创建data文件夹用于存放用于训练的数据集
 
-mkdir -p /root/personal_assistant/data && cd /root/personal_assistant/data
+mkdir -p /root/ft-oasst1/data && cd /root/ft-oasst1/data
 
 
 参考官方文档https://github.com/InternLM/xtuner/blob/main/docs/en/user_guides/dataset_format.md
@@ -137,19 +136,49 @@ with open('personal_assistant.json', 'w', encoding='utf-8') as f:
     json.dump(dataset, f, ensure_ascii=False, indent=4)
 
 
+
+
+
 这里进行大量的增量微调，构建爱莉的语气与知识背景
+
+
+
+
 
 配置准备
 
 下载模型InternLM-chat-7B
 
-mkdir -p /root/personal_assistant/model/Shanghai_AI_Laboratory
-cp -r /root/share/temp/model_repos/internlm-chat-7b /root/personal_assistant/model/Shanghai_AI_Laboratory
+# 创建一个目录，放模型文件，防止散落一地
+mkdir ~/ft-oasst1/internlm-chat-7b
 
-TIP:如果有问题可以先同步一下仓库（我当时遇到了问题，但没人提出）
+# 装一下拉取模型文件要用的库
+pip install modelscope
 
-#创建用于存放配置的文件夹config并进入
-mkdir /root/personal_assistant/config && cd /root/personal_assistant/config
+# 从 modelscope 下载下载模型文件
+cd ~/ft-oasst1
+apt install git git-lfs -y
+git lfs install
+git lfs clone https://modelscope.cn/Shanghai_AI_Laboratory/internlm-chat-7b.git -b v1.0.3
+
+由于 huggingface 网络问题，将以下指令复制到正确位置即可(教学平台)：
+
+cd ~/ft-oasst1
+# ...-guanaco 后面有个空格和英文句号啊
+cp -r /root/share/temp/datasets/openassistant-guanaco .
+
+TIP:如果有问题可以先同步一下仓库（我当时遇到了问题，但没人提出）和升级pip
+
+
+
+对于其他微调方法，建议采用以下命令获取列表，查找相关文件：
+
+xtuner list-cfg -p internlm
+其中-p 为模糊查找，若想训练其他模型，可以修改 internlm 为 Xtuner 支持的其他模型名称。如果所提供的配置文件不能满足使用需求，请导出所提供的配置文件并进行相应更改：
+
+xtuner copy-cfg ${CONFIG_NAME} ${SAVE_DIR}
+例如通过下列命令将名为 internlm_7b_qlora_oasst1_e3 的 config 导出至当前目录下：
+
 
 
 xtuner copy-cfg internlm_chat_7b_qlora_oasst1_e3 .
@@ -159,10 +188,10 @@ xtuner copy-cfg internlm_chat_7b_qlora_oasst1_e3 .
 
 # PART 1 中
 # 预训练模型存放的位置
-pretrained_model_name_or_path = '/root/personal_assistant/model/Shanghai_AI_Laboratory/internlm-chat-7b'
+pretrained_model_name_or_path = '/root/ft-oasst1/internlm-chat-7b'
 
 # 微调数据存放的位置
-data_path = '/root/personal_assistant/data/personal_assistant.json'
+data_path = '/root/ft-oasst1/data/personal_assistant.json'
 
 # 训练中最大的文本长度
 max_length = 512
@@ -177,7 +206,7 @@ max_epochs = 3
 evaluation_freq = 90
 
 # 用于评估输出内容的问题（用于评估的问题尽量与数据集的question保持一致）
-evaluation_inputs = [ '请介绍一下你自己', '请做一下自我介绍' ]
+evaluation_inputs = [ '请介绍一下你自己', '请做一下自我介绍' ]    #按实际情况修改
 
 
 # PART 3 中
@@ -189,25 +218,25 @@ dataset_map_fn=None
 
 用xtuner train命令启动训练、
 
-xtuner train /root/personal_assistant/config/internlm_chat_7b_qlora_oasst1_e3_copy.py  --deepspeed deepspeed_zero2
+xtuner train /root/ft-oasst1/internlm_chat_7b_qlora_oasst1_e3.py  --deepspeed deepspeed_zero2
 
 微调后参数转换/合并
 
 训练后的pth格式参数转Hugging Face格式
 
 # 创建用于存放Hugging Face格式参数的hf文件夹
-mkdir /root/personal_assistant/config/work_dirs/hf
+mkdir /root/ft-oasst1/work_dirs/hf
 
 export MKL_SERVICE_FORCE_INTEL=1
 
 # 配置文件存放的位置
-export CONFIG_NAME_OR_PATH=/root/personal_assistant/config/internlm_chat_7b_qlora_oasst1_e3_copy.py
+export CONFIG_NAME_OR_PATH=/root/ft-oasst1/internlm_chat_7b_qlora_oasst1_e3_copy.py
 
 # 模型训练后得到的pth格式参数存放的位置
-export PTH=/root/personal_assistant/config/work_dirs/internlm_chat_7b_qlora_oasst1_e3_copy/epoch_3.pth
+export PTH=/root/ft-oasst1/work_dirs/internlm_chat_7b_qlora_oasst1_e3_copy/epoch_3.pth
 
 # pth文件转换为Hugging Face格式后参数存放的位置
-export SAVE_PATH=/root/personal_assistant/config/work_dirs/hf
+export SAVE_PATH=/root/ft-oasst1/work_dirs/hf
 
 # 执行参数转换
 xtuner convert pth_to_hf $CONFIG_NAME_OR_PATH $PTH $SAVE_PATH
@@ -218,14 +247,14 @@ export MKL_SERVICE_FORCE_INTEL=1
 export MKL_THREADING_LAYER='GNU'
 
 # 原始模型参数存放的位置
-export NAME_OR_PATH_TO_LLM=/root/personal_assistant/model/Shanghai_AI_Laboratory/internlm-chat-7b
+export NAME_OR_PATH_TO_LLM=/root/ft-oasst1/internlm-chat-7b
 
 # Hugging Face格式参数存放的位置
-export NAME_OR_PATH_TO_ADAPTER=/root/personal_assistant/config/work_dirs/hf
+export NAME_OR_PATH_TO_ADAPTER=/root/ft-oasst1/work_dirs/hf
 
 # 最终Merge后的参数存放的位置
-mkdir /root/personal_assistant/config/work_dirs/hf_merge
-export SAVE_PATH=/root/personal_assistant/config/work_dirs/hf_merge
+mkdir /root/ft-oasst1/work_dirs/hf_merge
+export SAVE_PATH=/root/ft-oasst1/work_dirs/hf_merge
 
 # 执行参数Merge
 xtuner convert merge \
@@ -238,8 +267,14 @@ xtuner convert merge \
 
 pip install streamlit==1.24.0
 # 创建code文件夹用于存放InternLM项目代码
-mkdir /root/personal_assistant/code && cd /root/personal_assistant/code
+mkdir /root/ft-oasst1/code && cd /root/ft-oasst1/code
 git clone https://github.com/InternLM/InternLM.git
+
+切换 commit 版本，与教程 commit 版本保持一致，可以让大家更好的复现。
+
+cd InternLM
+git checkout 3028f07cb79e5b1d7342f4ad8d11efad3fd13d17
+
 
 将 /root/code/InternLM/web_demo.py 中 29 行和 33 行的模型路径更换为Merge后存放参数的路径 /root/personal_assistant/config/work_dirs/hf_merge
 
@@ -261,16 +296,33 @@ tips；0.1版本只用了100句话，调用的时候，需要先用台词喂一�
 
 
 未来展望
-  0.2 重大更新中 优化数据集，增加语音（小助手需要机遇算力支持）
-
+  0.2 重大更新中 优化数据集，计划增加LangChain 搭建爱莉的知识库
 
   
-  0.3 计划增加LangChain 搭建爱莉的知识库
+  0.3 计划增加LangChain 搭建爱莉的知识库增加语音（小助手需要机遇算力支持）
 
 
 
   
   0.4 计划增加 Agent框架,使爱莉无所不能哦
+
+  0.5 加入  梅比乌斯
+            伊甸
+            樱
+            帕朵
+            格蕾修
+            华
+            月下
+
+
+  0.6 修建多人物共同对话——————————黄金庭院茶话会
+            
+
+
+  0.7 计划增加新人物     1. Vivy -Fluorite Eye’s Song-    vivy    https://baike.baidu.com/item/%E8%96%87%E8%96%87%20-%E8%90%A4%E7%9F%B3%E7%9C%BC%E4%B9%8B%E6%AD%8C-/56618413
+                        2. BEATLESS                      蕾西亚   https://baike.baidu.com/item/%E8%95%BE%E8%A5%BF%E4%BA%9A/22329569?fromModule=lemma_inlink      
+                        Vivy 我是你的粉丝呀
+                        蕾西亚赛高，茶道赛高，咕噜咕噜
   
     
 
