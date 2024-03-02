@@ -3,7 +3,7 @@ from config.horowag_model_rebuilder import Horowag
 from openxlab.model import download
 import gradio as gr
 # 加载基础的语言模型 Horowag_7b
-download(model_repo='lengbaihang1/Elysia01',    #此处需要修改
+download(model_repo='lengbaihang1/Elysia02',    #此处需要修改
          output='Horowag_7b')                #此处需要修改
 
 
