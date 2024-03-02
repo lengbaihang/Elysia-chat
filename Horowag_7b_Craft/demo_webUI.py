@@ -220,8 +220,8 @@ def main():
     model, tokenizer = load_model()
     print('load model end.')
 
-    user_avator = "/root/horowag/data/user.png"                 #需要修改
-    robot_avator = "/root/horowag/data/robot.png"               #需要修改
+    user_avator = "Horowag_7b_Craft/409640fafbedab64b26c77f4b136afc379311e06.jpg"                 #需要修改
+    robot_avator = "Horowag_7b_Craft/fa8e8183b9014a9037207c89ef773912b31bee07.jpg"               #需要修改
 
     st.title('与Elysia聊天')
 
@@ -235,7 +235,6 @@ def main():
     greetings = [
         "嗨，欢迎回来。",
         "被这么盯着，我也是会害羞的哦。",
-        "汝想用什么来贿赂咱呢？是故事？或是甜点？还是美酒？",
         "我的名字是爱莉希雅，如你所见，是一位人如其名的美丽少女。",
         "嗯～和女孩子独处时，可要好好看向对方的眼晴噢～♪",
         "有空多来陪陪我好吗，你一定不忍心让可爱的我孤独寂寞吧。",
