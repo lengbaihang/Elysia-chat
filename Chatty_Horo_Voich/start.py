@@ -64,7 +64,7 @@ def voice_builder(context: str):
     api_param_args_3 = "-o" 
     api_param_conf_3 = ""
     api_param_args_4 = "-l" 
-    api_param_conf_4 = "日本語"
+    api_param_conf_4 = "中文"
     api_param_args_5 = "-t" 
     api_param_conf_5 = context
     api_param_args_6 = "-s"
@@ -111,16 +111,16 @@ class Chatty_Horo_Chain:
         try:
             self.ans = self.talk_chain.predict(input=question)
             
-            # 翻译音频结果
-            translate_ans = self.qwen_translation_chain.run(
-                source_language='中文', 
-                target_language='中文', 
-                text=self.ans
-            )
+           # 翻译音频结果
+            #translate_ans = self.qwen_translation_chain.run(
+                #source_language='中文', 
+                #target_language='中文', 
+                #text=self.ans
+            #)
             
-            print("翻译结果是：", translate_ans)
+            #print("翻译结果是：", translate_ans)
             # 转化音频文件(时序)
-            voice_builder(context=translate_ans)
+            voice_builder(context=self.ans)
             
             # 聊天函数
             chat_history.append(
