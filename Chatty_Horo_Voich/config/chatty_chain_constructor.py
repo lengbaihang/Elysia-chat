@@ -49,26 +49,3 @@ def horowag_conversation_chain(llm):
     return talk_chain
 
 
-# 构建翻译链
-def qwen_translation_chain(llm):
-    '''
-        Langchain(Chat) + Qwen(Translation)
-    '''
-    #system + human
-    template = """如果{source_language}与{target_language}相同，就保持原样，输入是什么，输出就是什么。
-    """
-    system_message_prompt = SystemMessagePromptTemplate.from_template(template)  
-     #待翻译文本由 Human 输入  
-    human_template = "{text}"  
-    human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)  
-     #System + Human 提示模板 ChatPromptTemplate  
-    chat_prompt_template = ChatPromptTemplate.from_messages(  
-        [system_message_prompt, human_message_prompt]  
-    )
-
-    translation_chain = LLMChain(
-        llm=llm, 
-        prompt=chat_prompt_template, 
-    )
-    
-    return translation_chain
