@@ -1,4 +1,4 @@
-from config.chatty_chain_constructor import horowag_conversation_chain, qwen_translation_chain
+from config.chatty_chain_constructor import horowag_conversation_chain
 from config.chatty_model_rebuilder import Qwen_Assistant, Horowag
 from langchain.prompts import PromptTemplate
 from openxlab.model import download
