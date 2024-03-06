@@ -162,7 +162,7 @@ class Chatty_Horo_Chain:
 # 构建对话模式
 Chatty_Horo_Chain = Chatty_Horo_Chain(
     model_path="Horowag_7b",
-    qwen_translation_chain=qwen_translation_chain
+    #qwen_translation_chain=qwen_translation_chain
 )
 
 # 构建 gradio 对话
@@ -192,7 +192,7 @@ with block_1 as demo_1:
                     value="Chatty_Horo_Voich/src/gradio_img/v2-57874c12f9588ffbff916353481e41d3_r.jpg",            ##需修改
                     interactive=False,
                     height="auto",
-                    label="Horo",
+                    label="Elysia",
                     type="pil"
                 )
 
