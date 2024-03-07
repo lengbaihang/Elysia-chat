@@ -62,7 +62,7 @@ def voice_builder(context: str):
     api_param_args_2 = "-c" 
     api_param_conf_2 = "/home/xlab-app-center/config.json"       #######需要更改
     api_param_args_3 = "-o" 
-    api_param_conf_3 = "/home/xlab-app-center"
+    api_param_conf_3 = "/home/xlab-app-center/"
     api_param_args_4 = "-l" 
     api_param_conf_4 = "简体中文"
     api_param_args_5 = "-t" 
