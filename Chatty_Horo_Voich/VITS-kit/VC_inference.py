@@ -131,8 +131,8 @@ if __name__ == "__main__":
                             录制或上传声音，并选择要转换的音色。
             """)
             with gr.Column():
-                record_audio = gr.Audio(label="record your voice", source="microphone")
-                upload_audio = gr.Audio(label="or upload audio here", source="upload")
+                record_audio = gr.Audio(label="record your voice", sources=["microphone"])
+                upload_audio = gr.Audio(label="or upload audio here", sources=["upload"])
                 source_speaker = gr.Dropdown(choices=speakers, value=speakers[0], label="source speaker")
                 target_speaker = gr.Dropdown(choices=speakers, value=speakers[0], label="target speaker")
             with gr.Column():
