@@ -62,7 +62,7 @@ def voice_builder(context: str):
     api_param_args_2 = "-c" 
     api_param_conf_2 = "/home/xlab-app-center/config.json"       #######需要更改
     api_param_args_3 = "-o" 
-    api_param_conf_3 = ""
+    api_param_conf_3 = "/home/xlab-app-center"
     api_param_args_4 = "-l" 
     api_param_conf_4 = "简体中文"
     api_param_args_5 = "-t" 
@@ -156,7 +156,7 @@ class Chatty_Horo_Chain:
             用于音频转化
         """
         # 路径
-        return os.path.join(os.path.dirname(__file__), "output.wav")
+        return "/home/xlab-app-center/output.wav"
 
 
 # 构建对话模式
