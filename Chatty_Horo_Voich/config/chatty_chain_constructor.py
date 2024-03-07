@@ -48,4 +48,29 @@ def horowag_conversation_chain(llm):
 
     return talk_chain
 
+# 构建翻译链
+def qwen_translation_chain(llm):
+    '''
+        Langchain(Chat) + Qwen(Translation)
+    '''
+    # system + human
+    template = """你是一个可靠的翻译专家。
+    """
+    system_message_prompt = SystemMessagePromptTemplate.from_template(template)  
+    # 待翻译文本由 Human 输入  
+    human_template = "{text}"  
+    human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)  
+    # System + Human 提示模板 ChatPromptTemplate  
+    chat_prompt_template = ChatPromptTemplate.from_messages(  
+        [system_message_prompt, human_message_prompt]  
+    )
+
+    translation_chain = LLMChain(
+        llm=llm, 
+        prompt=chat_prompt_template, 
+    )
+    
+    return translation_chain
+
+
 
