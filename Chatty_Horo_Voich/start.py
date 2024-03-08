@@ -38,7 +38,7 @@ download(model_repo='SaaRaaS/Qwen_Auxiliary_AWQ',     #####需要更改
 print("Qwen_Auxiliary_AWQ 下载完毕")
 
 # 加载语音微淘模型 Speaker
-download(model_repo='lengbaihang1/Elysiavits',     #######需要更改
+download(model_repo='lengbaihang1/Elysiavits3',     #######需要更改
          output='/home/xlab-app-center/')
 print("Speaker_Tuning_Model 下载完毕")
 
