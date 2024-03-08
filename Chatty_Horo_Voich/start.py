@@ -38,7 +38,7 @@ download(model_repo='SaaRaaS/Qwen_Auxiliary_AWQ',     #####需要更改
 print("Qwen_Auxiliary_AWQ 下载完毕")
 
 # 加载语音微淘模型 Speaker
-download(model_repo='lengbaihang1/Elysiavits2',     #######需要更改
+download(model_repo='lengbaihang1/Elysiavits',     #######需要更改
          output='/home/xlab-app-center/')
 print("Speaker_Tuning_Model 下载完毕")
 
@@ -58,9 +58,9 @@ def voice_builder(context: str):
     # 定义 API 参数
     program = "Chatty_Horo_Voich/VITS-kit/cmd_inference.py"
     api_param_args_1 = "-m" 
-    api_param_conf_1 = "/home/xlab-app-center/G_953000.pth"      #######需要更改
+    api_param_conf_1 = "/home/xlab-app-center/G_latest.pth"      #######需要更改
     api_param_args_2 = "-c" 
-    api_param_conf_2 = "/home/xlab-app-center/config.json"       #######需要更改
+    api_param_conf_2 = "/home/xlab-app-center/finetune_speaker.json"       #######需要更改
     api_param_args_3 = "-o" 
     api_param_conf_3 = "/home/xlab-app-center"
     api_param_args_4 = "-l" 
