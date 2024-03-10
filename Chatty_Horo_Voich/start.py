@@ -70,11 +70,11 @@ def voice_builder(context: str):
     api_param_args_6 = "-s"
     api_param_conf_6 = "Elysia"
     api_param_args_7 = "-ls"
-    api_param_conf_7 = "0.70"
-    api_param_args_8 = "-ns"
-    api_param_conf_8 = "0.80"
-    api_param_args_9 = "-nsw"
-    api_param_conf_9 = "0.70"
+    api_param_conf_7 = "0.75"
+    #api_param_args_8 = "-ns"
+    #api_param_conf_8 = "0.80"
+    #api_param_args_9 = "-nsw"
+    #api_param_conf_9 = "0.70"
     
     api_pt = [api_param_args_1, api_param_conf_1, 
               api_param_args_2, api_param_conf_2,
@@ -82,9 +82,9 @@ def voice_builder(context: str):
               api_param_args_4, api_param_conf_4,
               api_param_args_5, api_param_conf_5,
               api_param_args_6, api_param_conf_6,
-              api_param_args_7, api_param_conf_7,
-              api_param_args_8, api_param_conf_8,
-              api_param_args_9, api_param_conf_9]
+              api_param_args_7, api_param_conf_7]
+              #api_param_args_8, api_param_conf_8,
+              #api_param_args_9, api_param_conf_9]
     # 执行另一个 Python 文件，并传递参数
     subprocess.run([sys.executable, program] + api_pt)
     
