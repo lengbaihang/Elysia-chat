@@ -28,7 +28,7 @@ os.system("python setup.py build_ext --inplace")
 os.chdir('/home/xlab-app-center/')
 
 # 加载基础的语言模型 Horowag_7b
-download(model_repo='lengbaihang1/Elysiavits4',     ######需要更改
+download(model_repo='lengbaihang1/Elysia02',     ######需要更改
          output='Horowag_7b')
 print("Horowag_7b 下载完毕")
 
@@ -38,7 +38,7 @@ download(model_repo='lengbaihang1/Qwen1.5_4B_Auxiliary_AWQ',     #####需要更�
 print("Qwen_Auxiliary_AWQ 下载完毕")
 
 # 加载语音微淘模型 Speaker
-download(model_repo='lengbaihang1/Elysiavits3',     #######需要更改
+download(model_repo='lengbaihang1/Elysiavits4',     #######需要更改
          output='/home/xlab-app-center/')
 print("Speaker_Tuning_Model 下载完毕")
 
