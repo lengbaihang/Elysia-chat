@@ -98,8 +98,8 @@ class Chatty_Horo_Chain:
         self.talk_chain = horowag_conversation_chain(
             llm=Horowag(
                 model_path=model_path,
-                max_token=256,
-                temperature=0.75,
+                max_token=2560,
+                temperature=0.80,
                 top_p=0.95
             )
         )
