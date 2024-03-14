@@ -204,7 +204,7 @@ TIP:如果有问题可以先同步一下仓库（我当时遇到了问题，但�
     export CONFIG_NAME_OR_PATH=/root/ft-oasst1/internlm_chat_7b_qlora_oasst1_e3.py
 
 
-    export PTH=/root/ft-oasst1/work_dirs/internlm_chat_7b_qlora_oasst1_e3_copy/epoch_3.pth
+    export PTH=/root/ft-oasst1/work_dirs/internlm_chat_7b_qlora_oasst1_e3/epoch_3.pth
     
   
       export SAVE_PATH=/root/ft-oasst1/work_dirs/hf
