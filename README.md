@@ -223,10 +223,10 @@ Merge模型参数
      mkdir /root/ft-oasst1/work_dirs/hf_merge
      export SAVE_PATH=/root/ft-oasst1/work_dirs/hf_merge
      xtuner convert merge \
-    >     $NAME_OR_PATH_TO_LLM \
-    >     $NAME_OR_PATH_TO_ADAPTER \
-    >     $SAVE_PATH \
-    >     --max-shard-size 2GB
+        $NAME_OR_PATH_TO_LLM \
+        $NAME_OR_PATH_TO_ADAPTER \
+        $SAVE_PATH \
+        --max-shard-size 2GB
 
 
 
