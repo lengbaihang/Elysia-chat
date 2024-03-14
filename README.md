@@ -250,7 +250,7 @@ Merge模型参数
     git checkout 3028f07cb79e5b1d7342f4ad8d11efad3fd13d17
 
 
- 将 /root/code/InternLM/web_demo.py 中 29 行和 33 行的模型路径更换为Merge后存放参数的路径 /root/personal_assistant/config/work_dirs/hf_merge
+ 将 /root/ft-oasst1/code/InternLM/web_demo.py 中 29 行和 33 行的模型路径更换为Merge后存放参数的路径 /root/ft-oasst1/work_dirs/hf_merge
 
  运行 /root/personal_assistant/code/InternLM 目录下的 web_demo.py 文件，将端口映射到本地。在本地浏览器输入 http://127.0.0.1:6006 即可。
 
