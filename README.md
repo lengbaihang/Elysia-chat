@@ -220,6 +220,7 @@ Merge模型参数
      export MKL_SERVICE_FORCE_INTEL=1
      export MKL_THREADING_LAYER='GNU'
      export NAME_OR_PATH_TO_LLM=/root/ft-oasst1/internlm-chat-7b
+     mkdir /root/ft-oasst1/work_dirs/hf_merge
      export SAVE_PATH=/root/ft-oasst1/work_dirs/hf_merge
      xtuner convert merge \
     >     $NAME_OR_PATH_TO_LLM \
