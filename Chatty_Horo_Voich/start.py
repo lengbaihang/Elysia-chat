@@ -28,18 +28,25 @@ os.system("python setup.py build_ext --inplace")
 os.chdir('/home/xlab-app-center/')
 
 # 加载基础的语言模型 Horowag_7b
-download(model_repo='lengbaihang1/Elysia03',     ######需要更改
-         output='Horowag_7b')
+
+os.system(git clone https://code.openxlab.org.cn/lengbaihang1/Elysia03.git  Horowag_7b)
+
+#download(model_repo='lengbaihang1/Elysia03',     ######需要更改
+ #        output='Horowag_7b')
 print("Horowag_7b 下载完毕")
 
 # 加载辅助的语言模型 Qwen1_5
-download(model_repo='lengbaihang1/Qwen1.5_4B_Auxiliary_AWQ',     #####需要更改
-         output='Qwen_Auxiliary_AWQ')
+os.system(git clone https://code.openxlab.org.cn/lengbaihang1/Qwen1.5_4B_Auxiliary_AWQ.git  Qwen_Auxiliary_AWQ)
+
+#download(model_repo='lengbaihang1/Qwen1.5_4B_Auxiliary_AWQ',     #####需要更改
+ #        output='Qwen_Auxiliary_AWQ')
 print("Qwen_Auxiliary_AWQ 下载完毕")
 
 # 加载语音微淘模型 Speaker
-download(model_repo='lengbaihang1/Elysiavits4',     #######需要更改
-         output='/home/xlab-app-center/')
+os.system(git clone https://code.openxlab.org.cn/lengbaihang1/Elysiavits4.git .)
+
+#download(model_repo='lengbaihang1/Elysiavits4',     #######需要更改
+#         output='/home/xlab-app-center/')
 print("Speaker_Tuning_Model 下载完毕")
 
 # Qwen 模型初始化
