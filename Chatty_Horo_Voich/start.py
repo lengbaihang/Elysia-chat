@@ -29,21 +29,21 @@ os.chdir('/home/xlab-app-center/')
 
 # 加载基础的语言模型 Horowag_7b
 
-os.system(git clone https://code.openxlab.org.cn/lengbaihang1/Elysia03.git  Horowag_7b)
+os.system('git clone https://code.openxlab.org.cn/lengbaihang1/Elysia03.git  Horowag_7b')
 
 #download(model_repo='lengbaihang1/Elysia03',     ######需要更改
  #        output='Horowag_7b')
 print("Horowag_7b 下载完毕")
 
 # 加载辅助的语言模型 Qwen1_5
-os.system(git clone https://code.openxlab.org.cn/lengbaihang1/Qwen1.5_4B_Auxiliary_AWQ.git  Qwen_Auxiliary_AWQ)
+os.system('git clone https://code.openxlab.org.cn/lengbaihang1/Qwen1.5_4B_Auxiliary_AWQ.git  Qwen_Auxiliary_AWQ')
 
 #download(model_repo='lengbaihang1/Qwen1.5_4B_Auxiliary_AWQ',     #####需要更改
  #        output='Qwen_Auxiliary_AWQ')
 print("Qwen_Auxiliary_AWQ 下载完毕")
 
 # 加载语音微淘模型 Speaker
-os.system(git clone https://code.openxlab.org.cn/lengbaihang1/Elysiavits4.git .)
+os.system('git clone https://code.openxlab.org.cn/lengbaihang1/Elysiavits4.git')
 
 #download(model_repo='lengbaihang1/Elysiavits4',     #######需要更改
 #         output='/home/xlab-app-center/')
@@ -65,9 +65,9 @@ def voice_builder(context: str):
     # 定义 API 参数
     program = "Chatty_Horo_Voich/VITS-kit/cmd_inference.py"
     api_param_args_1 = "-m" 
-    api_param_conf_1 = "/home/xlab-app-center/G_latest.pth"      #######需要更改
+    api_param_conf_1 = "/home/xlab-app-center/Elysiavits4/G_latest.pth"      #######需要更改
     api_param_args_2 = "-c" 
-    api_param_conf_2 = "/home/xlab-app-center/finetune_speaker.json"       #######需要更改
+    api_param_conf_2 = "/home/xlab-app-center/Elysiavits4/finetune_speaker.json"       #######需要更改
     api_param_args_3 = "-o" 
     api_param_conf_3 = "/home/xlab-app-center"
     api_param_args_4 = "-l" 
@@ -105,7 +105,7 @@ class Chatty_Horo_Chain:
         self.talk_chain = horowag_conversation_chain(
             llm=Horowag(
                 model_path=model_path,
-                max_token=2560,
+                max_token=5120,
                 temperature=0.80,
                 top_p=0.95
             )
