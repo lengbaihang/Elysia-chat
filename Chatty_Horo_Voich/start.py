@@ -32,7 +32,7 @@ os.chdir('/home/xlab-app-center/')
 #os.system('git clone https://code.openxlab.org.cn/lengbaihang1/Elysia03.git  ./Horowag_7b')
 
 base_path = 'Horowag_7b'
-os.system(f'git clone https://code.openxlab.org.cn/OpenLMLab/internlm2-chat-7b.git {base_path}')
+os.system(f'git clone https://code.openxlab.org.cn/lengbaihang1/Elysia03.git {base_path}')
 os.system(f'cd {base_path} && git lfs pull')
 
 #download(model_repo='lengbaihang1/Elysia03',     ######需要更改
@@ -43,7 +43,7 @@ print("Horowag_7b 下载完毕")
 #os.system('git clone https://code.openxlab.org.cn/lengbaihang1/Qwen1.5_4B_Auxiliary_AWQ.git  ./Qwen_Auxiliary_AWQ')
 
 base_path = 'Qwen_Auxiliary_AWQ'
-os.system(f'git clone https://code.openxlab.org.cn/OpenLMLab/internlm2-chat-7b.git {base_path}')
+os.system(f'git clone https://code.openxlab.org.cn/lengbaihang1/Qwen1.5_4B_Auxiliary_AWQ.git {base_path}')
 os.system(f'cd {base_path} && git lfs pull')
 
 #download(model_repo='lengbaihang1/Qwen1.5_4B_Auxiliary_AWQ',     #####需要更改
@@ -54,7 +54,7 @@ print("Qwen_Auxiliary_AWQ 下载完毕")
 #os.system('git clone https://code.openxlab.org.cn/lengbaihang1/Elysiavits4.git ./Elysiavits4')
 
 base_path = 'Elysiavits4'
-os.system(f'git clone https://code.openxlab.org.cn/OpenLMLab/internlm2-chat-7b.git {base_path}')
+os.system(f'git clone https://code.openxlab.org.cn/lengbaihang1/Elysiavits4.git {base_path}')
 os.system(f'cd {base_path} && git lfs pull')
 
 
