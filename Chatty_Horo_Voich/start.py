@@ -51,7 +51,7 @@ print("Speaker_Tuning_Model 下载完毕")
 
 # Qwen 模型初始化
 Qwen_model = Qwen_Assistant(
-    model_path="Qwen_Auxiliary_AWQ",
+    model_path="/home/xlab-app-center/Qwen_Auxiliary_AWQ",
     top_p=0.25,
     max_token=128, 
     temperature=0.1
