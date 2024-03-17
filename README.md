@@ -1,6 +1,10 @@
 # Elysia-chat
 让爱莉希雅抚慰你的心吧♪
-[![Open in OpenXLab](https://cdn-static.openxlab.org.cn/header/openxlab_models.svg)]((https://openxlab.org.cn/apps/detail/lengbaihang1/Elysia)) ![Static Badge](https://img.shields.io/badge/license-Apache--2.0-green?label=license)
+
+
+
+[![Open in OpenXLab](https://cdn-static.openxlab.org.cn/header/openxlab_models.svg)](https://openxlab.org.cn/apps/detail/lengbaihang1/Elysia) ![Static Badge](https://img.shields.io/badge/license-Apache--2.0-green?label=license)
+
 
 
 ![v2-53f9a387bba7b2f673ffb242934afdc3_r](https://github.com/lengbaihang/Elysia-chat/assets/96370602/27967b2e-8ccb-410a-9c21-ee150f5e65b3)
