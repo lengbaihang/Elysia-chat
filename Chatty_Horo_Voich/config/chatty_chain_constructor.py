@@ -21,12 +21,6 @@ def horowag_conversation_chain(llm):
     '''
 
 
-
-
-
-
-
-
     template = """使用以下上下文来回答最后问题,要求回答的尽可能充分,不少于200字”。
     {history}
     问题: {input}
