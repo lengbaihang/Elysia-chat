@@ -53,7 +53,7 @@ print("Qwen_Auxiliary_AWQ 下载完毕")
 # 加载语音微淘模型 Speaker
 #os.system('git clone https://code.openxlab.org.cn/lengbaihang1/Elysiavits4.git ./Elysiavits4')
 
-base_path = 'Elysiavits4'
+base_path = 'Elysiavits'
 os.system(f'git clone https://code.openxlab.org.cn/lengbaihang1/Elysiavits5.git {base_path}')
 os.system(f'cd {base_path} && git lfs pull')
 
@@ -78,9 +78,9 @@ def voice_builder(context: str):
     # 定义 API 参数
     program = "Chatty_Horo_Voich/VITS-kit/cmd_inference.py"
     api_param_args_1 = "-m" 
-    api_param_conf_1 = "/home/xlab-app-center/Elysiavits5/G_latest.pth"      #######需要更改
+    api_param_conf_1 = "/home/xlab-app-center/Elysiavits/G_latest.pth"      #######需要更改
     api_param_args_2 = "-c" 
-    api_param_conf_2 = "/home/xlab-app-center/Elysiavits5/finetune_speaker.json"       #######需要更改
+    api_param_conf_2 = "/home/xlab-app-center/Elysiavits/finetune_speaker.json"       #######需要更改
     api_param_args_3 = "-o" 
     api_param_conf_3 = "/home/xlab-app-center"
     api_param_args_4 = "-l" 
