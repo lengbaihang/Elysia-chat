@@ -119,7 +119,7 @@ class Chatty_Horo_Chain:
             llm=Horowag(
                 model_path=model_path,
                 max_token=4096,
-                temperature=0.95,
+                temperature=0.90,
                 top_p=0.75
             )
         )
