@@ -6,7 +6,7 @@ import torch
 
 
 """
-    推荐使用 InternLM2 微调后的 Horowag 模型
+    推荐使用 InternLM2 微调后的 Elysia 模型
 """
 class Horowag(LLM):
     # 自定义 LLM 类
@@ -24,7 +24,7 @@ class Horowag(LLM):
         # model_path: 模型路径
         # 从本地初始化模型
         super().__init__()
-        print("正在加载 Horowag 模型...")
+        print("正在加载 Elysia 模型...")
         self.tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
         self.model = AutoModelForCausalLM.from_pretrained(model_path, trust_remote_code=True, low_cpu_mem_usage=True, torch_dtype=torch.bfloat16).cuda()
         self.model = self.model.eval()
