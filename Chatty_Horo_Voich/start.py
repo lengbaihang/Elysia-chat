@@ -90,7 +90,7 @@ def voice_builder(context: str):
     api_param_args_6 = "-s"
     api_param_conf_6 = "Elysia"
     api_param_args_7 = "-ls"
-    api_param_conf_7 = "0.75"
+    api_param_conf_7 = "0.80"
     #api_param_args_8 = "-ns"
     #api_param_conf_8 = "0.80"
     #api_param_args_9 = "-nsw"
@@ -119,8 +119,8 @@ class Chatty_Horo_Chain:
             llm=Horowag(
                 model_path=model_path,
                 max_token=4096,
-                temperature=0.90,
-                top_p=0.75
+                temperature=0.95,
+                top_p=0.40
             )
         )
         # Chain
