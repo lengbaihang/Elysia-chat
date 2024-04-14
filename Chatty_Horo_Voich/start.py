@@ -13,6 +13,7 @@ theme = 'ParityError/Anime'
 # /root/.conda/envs/test/lib/python3.10/site-packages/pyopenjtalk/
 
 # 构建编译环境
+os.system("export CUDA_LAUNCH_BLOCKING=1")
 os.system("pip install imageio==2.4.1")
 os.system("pip install moviepy==1.0.1")
 os.system("pip install pyopenjtalk==0.3.3")
@@ -90,7 +91,7 @@ def voice_builder(context: str):
     api_param_args_6 = "-s"
     api_param_conf_6 = "Elysia"
     api_param_args_7 = "-ls"
-    api_param_conf_7 = "0.80"
+    api_param_conf_7 = "0.85"
     #api_param_args_8 = "-ns"
     #api_param_conf_8 = "0.80"
     #api_param_args_9 = "-nsw"
