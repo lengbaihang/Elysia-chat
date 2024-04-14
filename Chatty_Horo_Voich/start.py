@@ -249,6 +249,17 @@ with block_1 as demo_1:
     <br>
     """)
 
+
+
+# threads to consume the request
+demo = gr.TabbedInterface(
+    [block_1], 
+    ["Voicy_Voicy"],
+    theme=theme
+)
+
+
+
 # threads to consume the request
 gr.close_all()
 
