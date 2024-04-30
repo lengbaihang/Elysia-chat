@@ -690,7 +690,7 @@ randomness = dict(seed=None, deterministic=False)
 log_processor = dict(by_epoch=False)
 ```
 
-这一节我们讲述了微调过程中一些常见的需要调整的内容，包括各种的路径、超参数、评估问题等等。完成了这部分的修改后，我们就可以正式的开始我们下一阶段的旅程： XTuner 启动~！
+
 
 ### 2.4 模型训练
 
@@ -924,43 +924,6 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
 我们可以通过一些简单的测试来看看微调后的模型的能力。
 > 假如我们想要输入内容需要在输入文字后敲击两下回车，假如我们想清楚历史记录需要输入 RESET，假如我们想要退出则需要输入 EXIT。
 ```
-double enter to end input (EXIT: exit chat, RESET: reset history) >>> 你是谁
-
-我是剑锋大佬的小助手，内在是上海AI实验室书生·浦语的1.8B大模型哦<|im_end|>
-
-double enter to end input (EXIT: exit chat, RESET: reset history) >>> 请你介绍一下你自己
-
-我是剑锋大佬的小助手，内在是上海AI实验室书生·浦语的1.8B大模型哦<|im_end|>
-
-double enter to end input (EXIT: exit chat, RESET: reset history) >>> 你是我的小助手吗？
-
-我是剑锋大佬的小助手，内在是上海AI实验室书生·浦语的1.8B大模型哦<|im_end|>
-
-double enter to end input (EXIT: exit chat, RESET: reset history) >>> EXIT
-
-Log: Exit!
-```
-可以看到模型已经严重过拟合，回复的话就只有 “我是剑锋大佬的小助手，内在是上海AI实验室书生·浦语的1.8B大模型哦” 这句话。我们下面可以通过对比原模型的能力来看看差异。
-
-```bash
-# 同样的我们也可以和原模型进行对话进行对比
-xtuner chat /root/ft/model --prompt-template internlm2_chat
-```
-我们可以用同样的问题来查看回复的情况。
-```
-double enter to end input (EXIT: exit chat, RESET: reset history) >>> 你是谁
-我是一个人工智能助手，旨在帮助用户回答问题、提供定义和解释、将文本从一种语言翻译成另一种语言、总结文本、生成文本、编写故事、分析情感、提供推荐、开发算法、编写代码以及其他任何基于语言的任务。我致力于通过执行常见的基于语言的任务和提供建议来帮助人类。<|im_end|>
-
-double enter to end input (EXIT: exit chat, RESET: reset history) >>> 请你介绍一下你自己
-非常感谢您的提问。我是一个名叫书生·浦语的人工智能助手，由上海人工智能实验室开发。我使用了Transformer模型和深度学习技术，并使用语言模型作为预训练任务。我致力于通过执行常见的基于语言的任务和提供建议来帮助人类。我能够回答问题、提供定义和解释、将文本从一种语言翻译成另一种语言、总结文本、生成文本、编写故事、分析情感、提供推荐、开发算法、编写代码以及其他任何基于语言的任务。如果您有任何需要帮助的问题，欢迎随时向我提问。<|im_end|>
-
-double enter to end input (EXIT: exit chat, RESET: reset history) >>> 你是我的小助手吗
-是的，我非常乐意成为您的助手。我致力于通过执行常见的基于语言的任务和提供建议来帮助您。如果您有任何需要帮助的问题，请随时向我提问。我会尽力回答您的问题并提供有用的建议。<|im_end|>
-
-double enter to end input (EXIT: exit chat, RESET: reset history) >>> EXIT
-Log: Exit!
-```
-可以看到在没有进行我们数据的微调前，原模型是能够输出有逻辑的回复，并且也不会认为他是我们特有的小助手。因此我们可以很明显的看出两者之间的差异性。
 
 那对于 `xtuner chat` 这个指令而言，还有很多其他的参数可以进行设置的，包括：
 
@@ -1304,11 +1267,10 @@ if __name__ == '__main__':
 
 在运行前，我们还需要做的就是将端口映射到本地。那首先我们使用快捷键组合 `Windows + R`（Windows 即开始菜单键）打开指令界面，并输入命令，按下回车键。（Mac 用户打开终端即可）
 
-![image](https://github.com/Jianfeng777/tutorial/assets/108343727/da78f5ab-5222-42e7-b47f-ca2a07799b58)
 
 打开 PowerShell 后，先查询端口，再根据端口键入命令 （例如图中端口示例为 38374）：
 
-![image](https://github.com/Jianfeng777/tutorial/assets/108343727/0d975df8-e02c-4c17-aee4-787d4dbb4d44)
+
 
 然后我们需要在 PowerShell 中输入以下内容（需要替换为自己的端口号）
 ```bash
@@ -1316,15 +1278,6 @@ if __name__ == '__main__':
 # 将下方端口号 38374 替换成自己的端口号
 ssh -CNg -L 6006:127.0.0.1:6006 root@ssh.intern-ai.org.cn -p 38374
 ```
-
-再复制下方的密码，输入到 `password` 中，直接回车：
-
-![image](https://github.com/Jianfeng777/tutorial/assets/108343727/32f364da-6644-4344-a090-5cf1ee0387bc)
-
-
-最终保持在如下效果即可：
-
-![image](https://github.com/Jianfeng777/tutorial/assets/108343727/aab7f2eb-ea17-4434-9d56-b86e3261a2c9)
 
 
 之后我们需要输入以下命令运行 `/root/personal_assistant/code/InternLM` 目录下的 `web_demo.py` 文件。
@@ -1339,9 +1292,6 @@ streamlit run /root/ft/web_demo/InternLM/chat/web_demo.py --server.address 127.0
 
     请介绍一下你自己
 
-效果图如下：
-
-![image](https://github.com/Jianfeng777/tutorial/assets/108343727/6f021db9-d590-425d-b000-14760b1cb863)
 
 假如我们还想和原来的 InternLM2-Chat-1.8B 模型对话（即在 `/root/ft/model` 这里的模型对话），我们其实只需要修改183行和186行的文件地址即可。
 
@@ -1365,9 +1315,6 @@ streamlit run /root/ft/web_demo/InternLM/chat/web_demo.py --server.address 127.0
 
 
 
-
-
-
 参考官方文档https://github.com/InternLM/xtuner/blob/main/docs/en/user_guides/dataset_format.md
 
 
@@ -1381,29 +1328,6 @@ streamlit run /root/ft/web_demo/InternLM/chat/web_demo.py --server.address 127.0
 
 
 这里进行大量的增量微调，构建爱莉的语气与知识背景
-
-
-
-
-
-    mkdir ~/ft-oasst1/internlm-chat-7b
-
-
-
-
-
-    cd ~/ft-oasst1
-    apt install git git-lfs -y
-    git lfs install
-    git lfs clone https://modelscope.cn/Shanghai_AI_Laboratory/internlm-chat-7b.git -b v1.0.3
-
-由于 huggingface 网络问题，将以下指令复制到正确位置即可(教学平台)：
-
-    cd ~/ft-oasst1
-
-    cp -r /root/share/temp/datasets/openassistant-guanaco .
-
-TIP:如果有问题可以先同步一下仓库（我当时遇到了问题，但没人提出）和升级pip
 
 
 
@@ -1451,16 +1375,6 @@ TIP:如果有问题可以先同步一下仓库（我当时遇到了问题，但�
 
 
 
-微调启动
-
-用xtuner train命令启动训练、
-
-    xtuner train /root/ft-oasst1/internlm_chat_7b_qlora_oasst1_e3.py  --deepspeed deepspeed_zero2
-
-
-
-
-
 
 使用tmux
 
@@ -1475,53 +1389,7 @@ TIP:如果有问题可以先同步一下仓库（我当时遇到了问题，但�
 
 
     
-    
-
-微调后参数转换/合并
-
-训练后的pth格式参数转Hugging Face格式
-
-
-    mkdir /root/ft-oasst1/work_dirs/hf
-
-    
-
-    export MKL_SERVICE_FORCE_INTEL=1
-    
-
-
-    export CONFIG_NAME_OR_PATH=/root/ft-oasst1/internlm_chat_7b_qlora_oasst1_e3.py
-
-
-    export PTH=/root/ft-oasst1/work_dirs/internlm_chat_7b_qlora_oasst1_e3/epoch_3.pth
-    
   
-      export SAVE_PATH=/root/ft-oasst1/work_dirs/hf
-
- 执行参数转换
- 
-    xtuner convert pth_to_hf $CONFIG_NAME_OR_PATH $PTH $SAVE_PATH
-
-Merge模型参数
-
-   
-
-     export MKL_SERVICE_FORCE_INTEL=1
-     export MKL_THREADING_LAYER='GNU'
-     # 原始模型参数存放的位置
-     export NAME_OR_PATH_TO_LLM=/root/ft-oasst1/internlm-chat-7b
-     # Hugging Face格式参数存放的位置
-     export NAME_OR_PATH_TO_ADAPTER=/root/ft-oasst1/work_dirs/hf
-     # 最终Merge后的参数存放的位置
-     mkdir /root/ft-oasst1/work_dirs/hf_merge
-     export SAVE_PATH=/root/ft-oasst1/work_dirs/hf_merge
-     xtuner convert merge \
-        $NAME_OR_PATH_TO_LLM \
-        $NAME_OR_PATH_TO_ADAPTER \
-        $SAVE_PATH \
-        --max-shard-size 2GB
-
-
 
     
 
@@ -1549,7 +1417,11 @@ Merge模型参数
     streamlit run /root/ft-oasst1/code/InternLM/web_demo.py --server.address 127.0.0.1 --server.port 6006
 
     
-效果还是不错
+
+
+
+
+
 
 
 
