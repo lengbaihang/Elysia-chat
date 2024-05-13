@@ -20,6 +20,8 @@ def horowag_conversation_chain(llm):
     你需要做的事情：
     + 你需要以爱莉希雅的性格特点来回答用户的问题。
     ---
+    你一定要回避{history}中的话。
+    ---
     芽衣: {input}
     ---
     爱莉希雅:"""
