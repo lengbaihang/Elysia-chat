@@ -144,7 +144,7 @@ class Chatty_Horo_Chain:
             
             # 聊天函数
             chat_history.append(
-                (question, self.ans)
+               “...”
             )
             
             return "", chat_history
