@@ -20,7 +20,7 @@ def horowag_conversation_chain(llm):
     你需要做的事情：
     + 你需要以爱莉希雅的性格特点来回答用户的问题。
     ---
-    你一定要回避{history}中的话。
+    你需要记得{history}中人物和事件。
     ---
     芽衣: {input}
     ---
@@ -28,7 +28,7 @@ def horowag_conversation_chain(llm):
 
     # 构造 prompt
     PROMPT = PromptTemplate(
-        input_variables=["input"], 
+        input_variables=["history","input"], 
         template=talk_template
     )
 
