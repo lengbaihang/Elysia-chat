@@ -58,6 +58,7 @@ base_path = 'Elysiavits'
 os.system(f'git clone https://code.openxlab.org.cn/lengbaihang1/Elysiavits5.git {base_path}')
 os.system(f'cd {base_path} && git lfs pull')
 
+my_list = []
 
 #download(model_repo='lengbaihang1/Elysiavits4',     #######需要更改
 #         output='/home/xlab-app-center/')
@@ -143,13 +144,17 @@ class Chatty_Horo_Chain:
             voice_builder(context=self.ans)
             
             # 聊天函数
+            my_list.append(
+                (question, self.ans)
+            )
+         
             chat_history.append(
-               "..."
+               " "
             )
             
-            return "", chat_history
+            return "", chat_history,my_list
         except Exception as e:
-            return e, chat_history
+            return e, chat_history,my_list
 
     # Normal Chat
     def chatty_chatty(self, question: str, chat_history: list = []):
@@ -232,7 +237,7 @@ with block_1 as demo_1:
         chatty_btn.click(
             fn=Chatty_Horo_Chain.voicy_voicy,
             inputs=[msg, chatbot],
-            outputs=[msg, chatbot],
+            outputs=[msg, chatbot,my_list],
         )
 
         chatbot.change(fn=Chatty_Horo_Chain.txt_to_audio,
