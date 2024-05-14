@@ -237,7 +237,7 @@ with block_1 as demo_1:
         chatty_btn.click(
             fn=Chatty_Horo_Chain.voicy_voicy,
             inputs=[msg, chatbot],
-            outputs=[msg, chatbot,my_list],
+            outputs=[my_list,msg,chatbot],
         )
 
         chatbot.change(fn=Chatty_Horo_Chain.txt_to_audio,
