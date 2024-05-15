@@ -28,7 +28,7 @@ def horowag_conversation_chain(llm):
 
     # 构造 prompt
     PROMPT = PromptTemplate(
-        input_variables=["input"], 
+        input_variables=["history","input"], 
         template=talk_template
     )
 
