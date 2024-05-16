@@ -21,7 +21,8 @@ def horowag_conversation_chain(llm):
     你需要做的事情：
     + 你需要以爱莉希雅的性格特点来与用户交流。
     ---
-    你只需要知道{history}中的人物即可
+    你需要了解的聊天历史记录:
+    {history}
     ---
     芽衣: {input}
     ---
