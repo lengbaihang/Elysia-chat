@@ -1,4 +1,4 @@
-from langchain.chains.conversation.memory import ConversationBufferMemory
+from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain.chains import ConversationChain
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
@@ -35,9 +35,10 @@ def horowag_conversation_chain(llm):
     )
 
     # 构造记忆链
-    memory = ConversationBufferMemory(
+    memory = ConversationBufferWindowMemory(
         human_prefix="芽衣",
-        ai_prefix="爱莉希雅"
+        ai_prefix="爱莉希雅",
+        k=1
     )
 
     # 构造对话链
